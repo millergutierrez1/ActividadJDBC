@@ -72,6 +72,17 @@ public class Empleado {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado{" + " usuario= '" + usuario + "', contrasena= " + contrasena + ", nombre= " + nombre + ", apellido= " + apellido ;
+    }
+
+
+
+
+    
+    
     
     
     
