@@ -3,6 +3,7 @@
  */
 package actividadjdbc;
 
+import static actividadjdbc.Herramientas.pideEntero;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,7 +24,7 @@ public class ActividadJDBC {
 
 //        Empleado e = new Empleado(123,"pss","Test","Apellido",123456789);
 //        Empleado e1 = new Empleado(654,"pss","Sebstian","Sanchez",987987987);
-//       
+//        
 //        Empleado e2 = new Empleado(456,"pss","Miller","Gutierrez",654654654);
 //        Empleado e3 = new Empleado(789,"pss","Anastasia","Pozhidaeva",987987987);
         try {
@@ -41,9 +42,21 @@ public class ActividadJDBC {
             // Se crea un Arraylist mis empleados y se llama
             // el metodo deontro de monitor.selle
 
-            for (Empleado actual : misEmpleados) {
-                System.out.println(actual);
+            monitor.mostrarListaEmpleados();
+//            System.out.println("Mostrar empleadi by ID: ");
+//            monitor.mostrarEmpleado(555);
+
+            int input = pideEntero("introduzca ID de usuaria a modificar: ");
+            
+            if(monitor.uExiste(input)){
+                monitor.UpdateEmpleado(input);
+            } else {
+                System.out.println("usuario, no existente.");
             }
+            //monitor.mostrarListaEmpleados();
+           
+            
+
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
