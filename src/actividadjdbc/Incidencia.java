@@ -19,25 +19,37 @@ public class Incidencia {
     private String origen;
     private String destino;
     private String descripcion;
+    private String prioridad;
     private Empleado idEmpleado;
+
+    public String getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
+    
     
     public Incidencia(){
         fecha = "";
         origen = "John";
         destino = "Jeff";
         descripcion = " Esta roto.";
-        idEmpleado = new Empleado ();
-        
+        prioridad = "Urgente";
     }
 
-    public Incidencia(int idIncidencia, String fecha, String origen, String destino, String descripcion, Empleado idEmpleado) {
+    public Incidencia(int idIncidencia, String fecha, String origen, String destino, String descripcion, String prioridad, Empleado idEmpleado) {
         this.idIncidencia = idIncidencia;
         this.fecha = fecha;
         this.origen = origen;
         this.destino = destino;
         this.descripcion = descripcion;
+        this.prioridad = prioridad;
         this.idEmpleado = idEmpleado;
     }
+
+ 
     
     
 
@@ -87,6 +99,11 @@ public class Incidencia {
 
     public void setIdEmpleado(Empleado idEmpleado) {
         this.idEmpleado = idEmpleado;
+    }
+
+    @Override
+    public String toString() {
+        return "Incidencia{" + "idIncidencia=" + idIncidencia + ", fecha=" + fecha + ", origen=" + origen + ", destino=" + destino + ", descripcion=" + descripcion + ", prioridad=" + prioridad + ", idEmpleado=" + idEmpleado.getUsuario() + '}';
     }
     
     

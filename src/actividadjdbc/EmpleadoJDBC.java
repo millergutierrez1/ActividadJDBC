@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  *
  * @author guti8
  */
-public class IncidenciaJDBC {
+public class EmpleadoJDBC {
 
     private Connection conexion; // Conexion con la base de datos.
 
@@ -46,11 +46,15 @@ public class IncidenciaJDBC {
 
     }
 
-    public void deleteEmpleado(Empleado e) throws SQLException {
+    public void deleteEmpleado(int input) throws SQLException {
         List<Empleado> lista = new ArrayList<>();
         sync();
-        String dropUser = "drop user ?";
-        PreparedStatement dropParameter = conexion.prepareStatement(dropUser);
+        String dropUser = "delete from empleado where usuario= ?";
+        PreparedStatement dropParametro = conexion.prepareStatement(dropUser);
+        dropParametro.setInt(1, input);
+        dropParametro.executeUpdate();
+        
+        syncOff();
 
     }
 
@@ -193,4 +197,5 @@ public class IncidenciaJDBC {
         conexion.close();
     }
 
+        
 }
