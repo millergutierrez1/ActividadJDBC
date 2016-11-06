@@ -29,6 +29,29 @@ public class Historial {
         
     }
 
+    public Historial(int idHistorial, String evento, String fecha, Empleado usuario, Incidencia idIncidencia) {
+        this.idHistorial = idHistorial;
+        this.evento = evento;
+        this.fecha = fecha;
+        this.usuario = usuario;
+        this.idIncidencia = idIncidencia;
+    }
+
+    public Historial(String evento, String fecha, Empleado usuario) {
+        this.evento = evento;
+        this.fecha = fecha;
+        this.usuario = usuario;
+    }
+
+    public Historial(int idHistorial, String evento, String fecha, Empleado usuario) {
+        this.idHistorial = idHistorial;
+        this.evento = evento;
+        this.fecha = fecha;
+        this.usuario = usuario;
+    }
+    
+    
+
     public int getIdHistorial() {
         return idHistorial;
     }
@@ -67,6 +90,11 @@ public class Historial {
 
     public void setIdIncidencia(Incidencia idIncidencia) {
         this.idIncidencia = idIncidencia;
+    }
+
+    @Override
+    public String toString() {
+        return "Historial{" +  ", evento=" + evento + ", fecha=" + fecha + ", usuario=" + usuario.getNombre() + ",}'";
     }
 
 

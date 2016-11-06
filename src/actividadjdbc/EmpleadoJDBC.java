@@ -53,8 +53,33 @@ public class EmpleadoJDBC {
         PreparedStatement dropParametro = conexion.prepareStatement(dropUser);
         dropParametro.setInt(1, input);
         dropParametro.executeUpdate();
-        
+
         syncOff();
+
+    }
+
+    public boolean login(int usuario, String contrasena) throws SQLException {
+        boolean login = false;
+        Empleado research = new Empleado();
+        sync();
+
+        if (uExiste(usuario)) {
+
+            String pss = uContrasena(usuario);
+            System.out.println(pss);
+            if (pss.equals(contrasena)) {
+                System.out.println("Login correct!!!");
+                login = true;
+            } else {
+                System.out.println("Usuario/Contraseña incorrectos");
+            }
+        } else {
+            System.out.println("Usuario no existe");
+
+        }
+
+        syncOff();
+        return login;
 
     }
 
@@ -70,6 +95,31 @@ public class EmpleadoJDBC {
 
         syncOff();
 
+    }
+
+    public String uContrasena(int usuario) throws SQLException {
+
+        sync();
+        boolean match;
+        String password = "";
+        String selectUser = "select contrasena from empleado where usuario= ?";
+
+        PreparedStatement consulta = conexion.prepareStatement(selectUser);
+        consulta.setInt(1, usuario);
+        ResultSet resultado = consulta.executeQuery();
+
+        // iteracion para obtener resultados:
+        if (resultado.next()) {
+
+            password = resultado.getString("contrasena");
+
+        }
+
+        resultado.close();
+        consulta.close();
+        syncOff();
+
+        return password;
     }
 
     public boolean uExiste(int usuario) throws SQLException {
@@ -160,6 +210,7 @@ public class EmpleadoJDBC {
 
     }
 
+
     public List<Empleado> selectAllEmpleados() throws SQLException {
         sync();
         List<Empleado> lista = new ArrayList<>();
@@ -197,5 +248,4 @@ public class EmpleadoJDBC {
         conexion.close();
     }
 
-        
 }

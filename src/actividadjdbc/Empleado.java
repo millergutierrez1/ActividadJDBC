@@ -12,7 +12,7 @@ package actividadjdbc;
 public class Empleado {
     
     private int usuario;
-    private String contrasena;
+    String contrasena;
     private String nombre;
     private String apellido;
     private int telefono;

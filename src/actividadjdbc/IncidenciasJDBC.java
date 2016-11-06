@@ -36,12 +36,13 @@ public class IncidenciasJDBC {
         conexion.close();
     }
 
-    void mostrarIncidencia(List<Incidencia> i) {
-        List<Incidencia> lista;
-        for (Incidencia Lista : i) {
+    void mostrarIncidencia(List<Incidencia> i) throws SQLException {
 
-            System.out.println(i); // Recorro array.
+        // Imprimir j de i;
+        for (Incidencia j : i) {
+            System.out.println(j);
         }
+
     }
 
     public String tiempo() {
@@ -55,7 +56,7 @@ public class IncidenciasJDBC {
     public void insertIncidencias(Incidencia i) throws SQLException {
         sync();
 
-        String insert = "insert into incidencias values (?,?,?,?,?,?,?)";
+        String insert = "insert into incidencia values (?,?,?,?,?,?,?)";
         PreparedStatement insertParametros = conexion.prepareStatement(insert);
 
         insertParametros.setInt(1, i.getIdIncidencia());
@@ -127,7 +128,8 @@ public class IncidenciasJDBC {
             i.setDestino(rs.getString("destino"));
             i.setDescripcion(rs.getString("descripcion"));
             i.setPrioridad(rs.getString("prioridad"));
-            // 
+            //userSearch (EmpleadoJDBC) buscoID de empleado y tomo la posicion 0
+            // Que deberia retornar el usuario.
             i.setIdEmpleado(userSearch.selectById(rs.getInt("idempleado")).get(0));
             lista.add(i);
         }
@@ -160,7 +162,8 @@ public class IncidenciasJDBC {
                 i.setDestino(rs.getString("destino"));
                 i.setDescripcion(rs.getString("descripcion"));
                 i.setPrioridad(rs.getString("prioridad"));
-                // 
+                //userSearch (EmpleadoJDBC) buscoID de empleado y tomo la posicion 0
+                // Que deberia retornar el usuario. 
                 i.setIdEmpleado(userSearch.selectById(rs.getInt("idempleado")).get(0));
                 lista.add(i);
             }
